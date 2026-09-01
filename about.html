@@ -14,6 +14,8 @@
     --navy-soft: #1B3A5C;
     --ink: #2A2118;
     --ink-soft: rgba(42,33,24,0.62);
+    --blue-accent: #3E76A8;
+    --orange-accent: #D97B3F;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,10 +23,28 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--cream);
+    background:
+      radial-gradient(ellipse 1200px 600px at 50% -8%, rgba(62,118,168,0.16) 0%, rgba(62,118,168,0) 60%),
+      var(--cream);
     font-family: 'Helvetica Neue', Arial, sans-serif;
     color: var(--ink);
     min-height: 100vh;
+    position: relative;
+  }
+
+  /* faint dot pattern texture */
+  .dot-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1300px;
+    background-image: radial-gradient(circle, rgba(13,27,42,0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 85%);
+    mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 85%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* NAVBAR */
@@ -34,6 +54,19 @@
     justify-content: space-between;
     padding: 28px 48px;
     background: var(--cream);
+    position: relative;
+    z-index: 2;
+  }
+
+  nav::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(60%, 640px);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(62,118,168,0) 0%, rgba(62,118,168,0.45) 50%, rgba(62,118,168,0) 100%);
   }
 
   .logo {
@@ -70,6 +103,8 @@
 
   section {
     padding: 0 48px;
+    position: relative;
+    z-index: 1;
   }
 
   .inner { max-width: 1100px; margin: 0 auto; }
@@ -91,13 +126,25 @@
   }
 
   .about-hero h1 {
-    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+    font-size: clamp(1.7rem, 4.2vw, 3.2rem);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.12;
-    max-width: 780px;
+    white-space: nowrap;
     margin: 0 auto 22px;
     color: var(--navy);
+  }
+
+  .about-hero h1 .accent-word {
+    color: var(--blue-accent);
+  }
+
+  .about-hero .accent-underline {
+    width: 46px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--orange-accent);
+    margin: 0 auto 24px;
   }
 
   .about-hero p {
@@ -106,6 +153,10 @@
     max-width: 620px;
     margin: 0 auto;
     color: var(--ink-soft);
+  }
+
+  @media (max-width: 640px) {
+    .about-hero h1 { white-space: normal; }
   }
 
   /* ===== STORY ===== */
@@ -126,7 +177,7 @@
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--navy-soft);
+    color: var(--blue-accent);
     position: sticky;
     top: 32px;
   }
@@ -223,8 +274,26 @@
 
   /* ===== MVV ===== */
   .mvv {
+    padding-top: 70px;
     padding-bottom: 110px;
+    position: relative;
   }
+
+  .mvv::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(13,27,42,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13,27,42,0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 40%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 75%);
+    mask-image: radial-gradient(ellipse 80% 100% at 50% 40%, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 75%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .mvv .inner { position: relative; z-index: 1; }
 
   .section-heading {
     text-align: center;
@@ -251,6 +320,22 @@
     border-radius: 24px;
     padding: 40px 32px;
     border: 1px solid var(--cream-line);
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    cursor: default;
+  }
+
+  .mvv-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 20px 40px rgba(13,27,42,0.12);
+    border-color: rgba(62,118,168,0.35);
+  }
+
+  .mvv-card:hover .mvv-icon {
+    background: var(--blue-accent);
+  }
+
+  .mvv-icon {
+    transition: background 0.28s ease;
   }
 
   .mvv-icon {
@@ -299,7 +384,22 @@
     padding: 36px 32px 32px;
     border: 1px solid var(--cream-line);
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    cursor: default;
+  }
+
+  .team-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 20px 40px rgba(13,27,42,0.12);
+    border-color: rgba(62,118,168,0.35);
+  }
+
+  .team-card:hover .avatar {
+    box-shadow: 0 10px 28px rgba(62,118,168,0.35);
+  }
+
+  .avatar {
+    transition: box-shadow 0.28s ease;
   }
 
   .avatar {
@@ -341,30 +441,6 @@
     text-align: left;
   }
 
-  /* ===== PARTNERS ===== */
-  .partners {
-    padding-bottom: 110px;
-    text-align: center;
-  }
-
-  .partners-list {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    flex-wrap: wrap;
-    margin-top: 36px;
-  }
-
-  .partner-pill {
-    padding: 14px 28px;
-    border: 1px solid var(--cream-line);
-    border-radius: 999px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--navy);
-    background: var(--cream-warm);
-  }
-
   footer {
     background: var(--navy-deep);
     color: rgba(242,232,216,0.5);
@@ -391,6 +467,8 @@
 </head>
 <body>
 
+<div class="dot-field"></div>
+
 <nav>
   <a href="remaura.html" class="logo">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -410,12 +488,22 @@
   </ul>
 </nav>
 
-<!-- HERO / WHO ARE WE -->
+<!-- HERO / WHY -->
 <section class="about-hero">
   <div class="inner">
-    <div class="eyebrow">Who We Are</div>
-    <h1>A companion, closely tuned to you.</h1>
+    <div class="eyebrow">Why REMaura</div>
+    <h1>A companion, <span class="accent-word">closely</span> tuned to you.</h1>
+    <div class="accent-underline"></div>
     <p>As a company, we stand for inclusivity, accuracy, and improvement. We put detail and care into even the smallest details — from our logo, to our name, to our device. We hope you'll choose REMaura.</p>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-panel">
+    <div class="quote-mark">"</div>
+    <blockquote>Microsleep-related accidents shouldn't be inevitable — they should be preventable. That belief is the reason REMaura exists.</blockquote>
+    <div class="quote-attr">The REMaura Team</div>
   </div>
 </section>
 
@@ -425,7 +513,7 @@
     <div class="story-grid">
       <div class="story-label">Our Story<span>Where it began</span></div>
       <div class="story-text">
-        <p>Our motivation stems from a personal challenge: Avni's grandmother has narcolepsy (type I) and is allergic to modafinil, making standard treatments inaccessible. After her diagnosis, she experienced dangerous microsleeps — once falling asleep while driving, and losing her license as a result.</p>
+        <p>Our motivation stems from a personal challenge: one of our loved ones has narcolepsy (type I) and is allergic to modafinil, making standard treatments inaccessible. After her diagnosis, she experienced dangerous microsleeps — once falling asleep while driving, and losing her license as a result.</p>
         <p>This deeply personal experience inspired us to create a safer, more effective solution for people like her.</p>
       </div>
     </div>
@@ -439,15 +527,6 @@
         <p>The name also draws from REM sleep, while "aura" represents an invisible layer of protection.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- QUOTE -->
-<section class="quote-section">
-  <div class="quote-panel">
-    <div class="quote-mark">"</div>
-    <blockquote>Microsleep-related accidents shouldn't be inevitable — they should be preventable. That belief is the reason REMaura exists.</blockquote>
-    <div class="quote-attr">The REMaura Team</div>
   </div>
 </section>
 
@@ -504,19 +583,6 @@
         <div class="team-role">Co-Founder</div>
         <p class="bio">Brings essential software, organizational, and presentation skills, honed through leadership developing a 501(c)(3) non-profit that choreographs Ramayana plays for children, and through recognition in Model UN and debate. She completed online courses through EdX, including CS50 from HarvardX, and drives consistent progress across REMaura's team.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- PARTNERS -->
-<section class="partners">
-  <div class="inner">
-    <div class="eyebrow">Thank You</div>
-    <h2 style="font-size: 1.6rem; font-weight: 600; color: var(--navy);">To our sponsors and partners</h2>
-    <div class="partners-list">
-      <div class="partner-pill">Project Sleep</div>
-      <div class="partner-pill">Bagel Fund</div>
-      <div class="partner-pill">Teen Tank</div>
     </div>
   </div>
 </section>
