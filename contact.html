@@ -18,6 +18,9 @@
     --orange-accent: #D97B3F;
   }
 
+  ::selection { background: var(--blue-accent); color: var(--cream); }
+  ::-moz-selection { background: var(--blue-accent); color: var(--cream); }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
@@ -55,22 +58,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px 48px;
+    padding: 28px 48px;
     background: var(--cream);
     position: relative;
     z-index: 2;
     flex-shrink: 0;
-  }
-
-  nav::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(60%, 640px);
-    height: 1px;
-    background: linear-gradient(90deg, rgba(62,118,168,0) 0%, rgba(62,118,168,0.45) 50%, rgba(62,118,168,0) 100%);
   }
 
   .logo {
@@ -88,12 +80,12 @@
 
   .nav-links {
     display: flex;
-    gap: 36px;
+    gap: 26px;
     list-style: none;
   }
 
   .nav-links a {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--ink);
     opacity: 0.6;
@@ -113,7 +105,7 @@
     justify-content: center;
     position: relative;
     z-index: 1;
-    padding: 16px 40px 36px;
+    padding: 16px 40px 20px;
     min-height: 0;
   }
 
@@ -274,7 +266,62 @@
     .contact-wrap { grid-template-columns: 1fr; height: auto; }
     .nav-links { display: none; }
     nav { padding: 20px 24px; }
+    .mini-footer { flex-direction: column; gap: 10px; text-align: center; }
   }
+
+  /* COMPACT FOOTER (keeps the page single-screen) */
+  .mini-footer {
+    flex-shrink: 0;
+    background: var(--navy-deep);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .mini-footer .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--cream);
+    text-decoration: none;
+  }
+
+  .mini-footer .footer-logo svg { width: 20px; height: auto; color: var(--cream); }
+
+  .mini-footer .footer-tagline {
+    font-size: 0.76rem;
+    color: rgba(242,232,216,0.5);
+    margin-left: 4px;
+  }
+
+  .mini-footer .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .mini-footer .footer-social,
+  .mini-footer .footer-contact {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(242,232,216,0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .mini-footer .footer-social svg { width: 15px; height: 15px; }
+
+  .mini-footer .footer-social:hover,
+  .mini-footer .footer-contact:hover { color: #7FB3E0; }
 </style>
 </head>
 <body>
@@ -292,11 +339,12 @@
   </a>
   <ul class="nav-links">
     <li><a href="remaura.html">Home</a></li>
-    <li><a href="#">Our Product</a></li>
+    <li><a href="our-product.html">Our Product</a></li>
+    <li><a href="impact.html">Impact & Recognition</a></li>
+    <li><a href="research.html">Research</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="contact.html" class="active">Contact Us</a></li>
-    <li><a href="#">Tab 6</a></li>
+    <li><a href="media.html">Media</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
   </ul>
 </nav>
 
@@ -317,49 +365,91 @@
       </div>
     </div>
 
-    <form class="contact-form" id="contactForm">
+    <form class="contact-form" id="contactForm" action="https://formsubmit.co/sriharshikathouti@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New message from REMaura site">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+
       <div class="row-2">
         <div class="field">
           <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Your name" required>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
         </div>
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@email.com" required>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required>
         </div>
       </div>
       <div class="field">
         <label for="subject">Subject</label>
-        <input type="text" id="subject" placeholder="What's this about?">
+        <input type="text" id="subject" name="subject" placeholder="What's this about?">
       </div>
       <div class="field">
         <label for="message">Message</label>
-        <textarea id="message" placeholder="Tell us a bit more..." required></textarea>
+        <textarea id="message" name="message" placeholder="Tell us a bit more..." required></textarea>
       </div>
-      <button type="submit" class="submit-btn">Send Message</button>
-      <div class="form-note" id="formNote">Opens your email app, addressed to our team.</div>
+      <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+      <div class="form-note" id="formNote">We reply within 2–3 business days.</div>
     </form>
   </div>
 </main>
 
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function (e) {
+  var form = document.getElementById('contactForm');
+  var btn = document.getElementById('submitBtn');
+  var note = document.getElementById('formNote');
+
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
 
-    var name = document.getElementById('name').value.trim();
-    var email = document.getElementById('email').value.trim();
-    var subject = document.getElementById('subject').value.trim() || 'New message from REMaura site';
-    var message = document.getElementById('message').value.trim();
+    var data = new FormData(form);
 
-    var body = 'Name: ' + name + '\nEmail: ' + email + '\n\n' + message;
-
-    var mailtoLink = 'mailto:sriharshikathouti@gmail.com'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body=' + encodeURIComponent(body);
-
-    window.location.href = mailtoLink;
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+      .then(function (res) {
+        if (res.ok) {
+          form.reset();
+          btn.textContent = 'Message Sent';
+          note.textContent = "Thanks — we'll get back to you within 2–3 business days.";
+        } else {
+          throw new Error('Submission failed');
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+        note.textContent = "Something went wrong — please email us directly instead.";
+      });
   });
 </script>
+
+<footer class="mini-footer">
+  <a href="remaura.html" class="footer-logo">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 12C2 12 6 6 13 6C18 6 22 9 22 12C22 15 18 18 13 18C6 18 2 12 2 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M22 12L24 9V15L22 12Z" fill="currentColor"/>
+      <circle cx="7.5" cy="11" r="1" fill="currentColor"/>
+    </svg>
+    REMaura
+    <span class="footer-tagline">Awareness you can wear.</span>
+  </a>
+  <div class="footer-right">
+    <a href="https://www.instagram.com/remau.ra/" target="_blank" rel="noopener noreferrer" class="footer-social">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="17.3" cy="6.7" r="1" fill="currentColor"/>
+      </svg>
+      @remau.ra
+    </a>
+    <a href="contact.html" class="footer-contact">Contact Us →</a>
+  </div>
+</footer>
 
 </body>
 </html>
