@@ -132,10 +132,10 @@
   .county-divider { grid-column:1 / -1; display:flex; align-items:center; gap:14px; margin:8px 0 -2px; color:var(--blue-accent); font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
   .county-divider::before, .county-divider::after { content:""; height:1px; background:var(--cream-line); flex:1; }
 
-  .hero-visual { padding-bottom: 0; display:flex; align-items:flex-start; justify-content:center; min-height:290px; }
+  .hero-visual { padding-bottom: 0; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; min-height:290px; }
   .hero-mountain {
     position:relative; width:100%; max-width:430px; height:285px;
-    margin:0 auto;
+    margin:0 auto; flex:0 0 auto;
   }
   .hero-photo {
     position:absolute; width:52%; height:190px; border:6px solid var(--cream);
@@ -154,6 +154,7 @@
   .hero-photo.one:hover { transform:translateY(-8px) rotate(-4deg) scale(1.035); }
   .hero-photo.two:hover { transform:translateY(-10px) rotate(0deg) scale(1.04); }
   .hero-photo.three:hover { transform:translateY(-8px) rotate(4deg) scale(1.035); }
+  .hero-visual .hero-copy { margin:6px 0 0 auto; padding-bottom:0; position:relative; z-index:20; }
   @media (max-width:700px) {
     .hero-mountain { height:245px; }
     .hero-photo { height:160px; width:55%; }
