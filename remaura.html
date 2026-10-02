@@ -1,1 +1,109 @@
-<!--PLACEHOLDER--!>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REMaura — Awareness You Can Wear</title>
+<style>
+  :root{
+    --cream:#F2E8D8;--cream-warm:#EEDFC7;--cream-line:#E4D6BC;
+    --navy:#0D1B2A;--navy-deep:#08111C;--navy-soft:#1B3A5C;
+    --ink:#2A2118;--ink-soft:rgba(42,33,24,.62);
+    --blue:#3E76A8;--sky:#3E76A8;--aqua:#3D8B9A;--water:#185B78;--deep:#0D2F4A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);font-family:'Helvetica Neue',Arial,sans-serif;color:var(--ink);min-height:100vh}
+  nav{height:88px;display:flex;align-items:center;justify-content:space-between;padding:28px 48px;background:var(--cream);position:relative;z-index:10}
+  nav::after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:min(60%,640px);height:1px;background:linear-gradient(90deg,transparent,rgba(62,118,168,.45),transparent)}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:600;font-size:1.15rem;letter-spacing:.02em;color:var(--navy);text-decoration:none}
+  .logo svg{width:34px;height:auto}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{font-size:.85rem;font-weight:500;color:var(--ink);opacity:.6;text-decoration:none;transition:opacity .2s ease}
+  .nav-links a:hover,.nav-links a.active{opacity:1}
+
+  .hero-shell{height:calc(100vh - 88px);min-height:620px;padding:18px 48px 38px;display:flex}
+  .hero-card{position:relative;flex:1;min-height:0;border-radius:34px;overflow:hidden;background:#123F64;box-shadow:0 20px 60px rgba(13,27,42,.12), inset 0 0 0 3px rgba(13,27,42,.42);isolation:isolate}
+
+  /* sky */
+  .sky{position:absolute;inset:0;background:linear-gradient(180deg,#173A5B 0%,#255776 34%,#327A90 54%,#2D7188 64%,#225D76 72%,#184B67 82%,#123852 91%,#0D1B2A 100%);z-index:0}
+  .sky::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 42%,rgba(13,27,42,.18) 78%,rgba(13,27,42,.42) 100%),radial-gradient(ellipse at 70% 30%,rgba(95,181,185,.16),transparent 30%),radial-gradient(ellipse at 42% 62%,rgba(72,154,171,.12),transparent 34%),linear-gradient(115deg,rgba(255,255,255,.035),transparent 42%);}
+  .sky::after{content:"";position:absolute;width:46vw;height:15vw;right:-8vw;top:9%;background:rgba(96,190,191,.07);filter:blur(38px);border-radius:50%}
+
+  /* distant horizon */
+  .horizon{position:absolute;left:0;right:0;top:54%;height:18%;z-index:1;background:linear-gradient(180deg,rgba(67,148,164,.13),rgba(43,119,142,.11) 48%,rgba(25,76,103,.10) 78%,transparent 100%);mix-blend-mode:screen}
+  .horizon::before{content:"";position:absolute;left:-5%;right:-5%;top:-6px;height:72px;background:linear-gradient(180deg,rgba(104,184,188,.18),rgba(70,145,163,.10) 48%,rgba(24,75,101,.06) 100%);clip-path:polygon(0 58%,8% 43%,17% 57%,28% 39%,39% 55%,50% 41%,61% 57%,73% 42%,84% 55%,93% 43%,100% 56%,100% 100%,0 100%);filter:blur(7px);opacity:.8}
+
+  /* layered foreground ocean */
+  .ocean{position:absolute;left:0;right:0;bottom:0;top:57%;z-index:2;background:linear-gradient(180deg,rgba(45,126,150,.42) 0%,#2A6F87 13%,#205C75 34%,#194E68 52%,#16445F 67%,#123752 82%,#0D1B2A 100%);overflow:hidden;mask-image:linear-gradient(180deg,rgba(0,0,0,.15) 0%,#000 10%);-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.15) 0%,#000 10%)}
+  .ocean::before{content:"";position:absolute;left:-5%;right:-5%;top:-7%;height:25%;background:rgba(91,178,181,.24);clip-path:polygon(0 54%,7% 38%,14% 54%,21% 32%,28% 53%,36% 35%,44% 56%,52% 30%,60% 51%,68% 34%,76% 55%,84% 31%,92% 51%,100% 35%,100% 100%,0 100%);filter:blur(1px)}
+  .wave{position:absolute;left:-5%;width:110%;height:26%;border-radius:50% 50% 0 0/55% 55% 0 0;transform:rotate(-1.5deg);border-top:2px solid rgba(118,201,201,.28);}
+  .wave.one{top:10%;opacity:.55}.wave.two{top:27%;opacity:.34;transform:rotate(1deg)}.wave.three{top:47%;opacity:.22;transform:rotate(-.5deg)}
+  .water-shimmer{position:absolute;inset:0;background:repeating-linear-gradient(177deg,transparent 0 20px,rgba(123,193,194,.055) 21px,transparent 23px 45px);opacity:.6}
+  .water-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,27,42,.30),transparent 22%,transparent 78%,rgba(13,27,42,.30)),linear-gradient(180deg,transparent 58%,rgba(13,27,42,.08) 72%,rgba(13,27,42,.32) 100%)}
+
+  .hero-copy{position:absolute;z-index:5;left:8%;top:9%;width:54%;color:white;text-align:left}
+  .hero-kicker{display:none}
+  .hero-line{font-size:clamp(1.45rem,2.5vw,2.65rem);line-height:1.12;letter-spacing:-.035em;font-weight:500;color:rgba(240,248,248,.93);max-width:650px;text-shadow:0 2px 18px rgba(8,17,28,.14)}
+  .brand-lockup{position:absolute;z-index:6;left:8%;top:53%;transform:translateY(-50%);width:72%;text-align:left;color:#C5E4E3;text-shadow:0 3px 25px rgba(8,17,28,.24)}
+  .brand-name{font-size:clamp(4.8rem,10vw,9.5rem);font-weight:600;letter-spacing:-.075em;line-height:.82}
+  .tagline{margin-top:18px;font-size:clamp(.9rem,1.35vw,1.2rem);letter-spacing:.08em;text-transform:uppercase;color:rgba(218,240,239,.84);font-weight:500}
+
+  .scroll-cue{position:absolute;z-index:7;right:32px;bottom:28px;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.7);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+  .scroll-cue::after{content:"";width:1px;height:46px;background:rgba(255,255,255,.45);animation:drift 1.8s ease-in-out infinite}
+  @keyframes drift{0%,100%{transform:scaleY(.55);transform-origin:top;opacity:.35}50%{transform:scaleY(1);transform-origin:top;opacity:.9}}
+
+  @media(max-width:900px){
+    nav{padding:22px 28px;height:78px}.hero-shell{height:calc(100vh - 78px);padding:14px 28px 28px}.nav-links{gap:16px}
+    .hero-copy{left:7%;top:7%;width:82%}.brand-lockup{left:7%;top:52%;width:82%}.brand-name{font-size:clamp(4rem,15vw,8rem)}
+  }
+  @media(max-width:700px){
+    nav{height:70px;padding:20px 22px}.nav-links{display:none}.hero-shell{height:calc(100vh - 70px);min-height:600px;padding:10px 14px 18px}.hero-card{border-radius:25px}
+    .hero-copy{left:7%;top:7%;width:82%}.hero-line{font-size:1.45rem}.brand-lockup{left:7%;top:51%;width:84%}.brand-name{font-size:clamp(4rem,20vw,7rem)}.tagline{font-size:.72rem;margin-top:16px;letter-spacing:.06em}.scroll-cue{right:17px;bottom:18px}
+    .ocean{top:57%}.horizon{top:54%}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="remaura.html" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M2 12C2 12 6 6 13 6C18 6 22 9 22 12C22 15 18 18 13 18C6 18 2 12 2 12Z" stroke="#0D1B2A" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M22 12L24 9V15L22 12Z" fill="#0D1B2A"/><circle cx="7.5" cy="11" r="1" fill="#0D1B2A"/>
+    </svg>
+    REMaura
+  </a>
+  <ul class="nav-links">
+    <li><a href="remaura.html" class="active">Home</a></li>
+    <li><a href="our-product.html">Our Product</a></li>
+    <li><a href="impact.html">Impact & Recognition</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="media.html">Media</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="hero-shell">
+  <section class="hero-card" aria-label="REMaura introduction">
+    <div class="sky"></div>
+    <div class="horizon"></div>
+    <div class="ocean">
+      <div class="wave one"></div><div class="wave two"></div><div class="wave three"></div>
+      <div class="water-shimmer"></div><div class="water-vignette"></div>
+    </div>
+
+    <div class="hero-copy">
+      <div class="hero-line">Experience tranquil, true peace of mind with</div>
+    </div>
+
+    <div class="brand-lockup">
+      <div class="brand-name">REMaura</div>
+      <div class="tagline">Awareness You Can Wear</div>
+    </div>
+
+    <div class="scroll-cue">Explore</div>
+  </section>
+</main>
+</body>
+</html>
