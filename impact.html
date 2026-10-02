@@ -132,27 +132,32 @@
   .county-divider { grid-column:1 / -1; display:flex; align-items:center; gap:14px; margin:8px 0 -2px; color:var(--blue-accent); font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
   .county-divider::before, .county-divider::after { content:""; height:1px; background:var(--cream-line); flex:1; }
 
-  .hero-visual { padding-bottom: 0; }
-  .hero-carousel {
-    position: relative; height: 220px; overflow: hidden;
-    border: 1px solid var(--cream-line); background: var(--cream-warm);
+  .hero-visual { padding-bottom: 0; display:flex; align-items:flex-start; justify-content:center; min-height:290px; }
+  .hero-mountain {
+    position:relative; width:100%; max-width:430px; height:285px;
+    margin:0 auto;
   }
-  .hero-slides { display:flex; width:300%; height:100%; transition:transform .65s cubic-bezier(.22,.61,.36,1); }
-  .hero-slide {
-    width:33.333%; flex:none; position:relative; display:flex; align-items:flex-end;
-    padding:20px; background:
-      linear-gradient(135deg, rgba(62,118,168,.18), rgba(238,223,199,.35));
+  .hero-photo {
+    position:absolute; width:52%; height:190px; border:6px solid var(--cream);
+    border-radius:18px; overflow:hidden; background:var(--cream-warm);
+    box-shadow:0 14px 28px rgba(13,27,42,.14), 0 2px 5px rgba(13,27,42,.08);
+    display:flex; align-items:flex-end; padding:15px;
+    transition:transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s ease, z-index 0s;
   }
-  .hero-slide:nth-child(2) { background:linear-gradient(135deg, rgba(13,27,42,.08), rgba(62,118,168,.12)); }
-  .hero-slide:nth-child(3) { background:linear-gradient(135deg, rgba(217,123,63,.10), rgba(238,223,199,.55)); }
-  .hero-slide::before {
-    content:"IMAGE PLACEHOLDER"; position:absolute; top:20px; left:20px;
-    font-size:.63rem; letter-spacing:.14em; font-weight:700; color:rgba(13,27,42,.45);
+  .hero-photo::before { content:""; position:absolute; inset:0; background:linear-gradient(145deg, rgba(62,118,168,.20), rgba(238,223,199,.35)); }
+  .hero-photo::after { content:"IMAGE PLACEHOLDER"; position:absolute; top:15px; left:15px; font-size:.58rem; letter-spacing:.13em; font-weight:700; color:rgba(13,27,42,.42); }
+  .hero-photo span { position:relative; z-index:1; font-size:.72rem; color:var(--navy); font-weight:600; }
+  .hero-photo.one { left:2%; bottom:12px; transform:rotate(-7deg); z-index:1; background:linear-gradient(145deg,#d9e5ee,#eee1cd); }
+  .hero-photo.two { left:24%; top:0; transform:rotate(2.5deg); z-index:3; background:linear-gradient(145deg,#e8dcc8,#c9dcea); }
+  .hero-photo.three { right:2%; bottom:12px; transform:rotate(6deg); z-index:2; background:linear-gradient(145deg,#d7e2e9,#e9d8c2); }
+  .hero-photo:hover { z-index:10; box-shadow:0 22px 42px rgba(13,27,42,.20), 0 4px 8px rgba(13,27,42,.10); }
+  .hero-photo.one:hover { transform:translateY(-8px) rotate(-4deg) scale(1.035); }
+  .hero-photo.two:hover { transform:translateY(-10px) rotate(0deg) scale(1.04); }
+  .hero-photo.three:hover { transform:translateY(-8px) rotate(4deg) scale(1.035); }
+  @media (max-width:700px) {
+    .hero-mountain { height:245px; }
+    .hero-photo { height:160px; width:55%; }
   }
-  .hero-slide span { font-size:.78rem; color:var(--navy); font-weight:600; }
-  .hero-dots { display:flex; gap:7px; margin-top:10px; }
-  .hero-dot { width:6px; height:6px; border:0; border-radius:50%; background:var(--cream-line); padding:0; cursor:pointer; }
-  .hero-dot.active { background:var(--blue-accent); }
   .project-sleep {
     grid-column:1 / -1; display:grid; grid-template-columns:1.05fr .95fr; gap:0;
     border:1px solid var(--cream-line); background:rgba(238,223,199,.4); overflow:hidden;
@@ -304,17 +309,10 @@
         <h1>What happens when an idea gets tested in the real world.</h1>
       </div>
       <div class="hero-visual">
-        <div class="hero-carousel" aria-label="REMaura recognition and project images">
-          <div class="hero-slides">
-            <div class="hero-slide"><span>Competition / recognition photo</span></div>
-            <div class="hero-slide"><span>Prototype or testing moment</span></div>
-            <div class="hero-slide"><span>Team / community moment</span></div>
-          </div>
-        </div>
-        <div class="hero-dots" aria-label="Image carousel controls">
-          <button class="hero-dot active" aria-label="Show image 1"></button>
-          <button class="hero-dot" aria-label="Show image 2"></button>
-          <button class="hero-dot" aria-label="Show image 3"></button>
+        <div class="hero-mountain" aria-label="Placeholder gallery of REMaura moments">
+          <div class="hero-photo one"><span>Competition / recognition</span></div>
+          <div class="hero-photo two"><span>Prototype / testing</span></div>
+          <div class="hero-photo three"><span>Team / community</span></div>
         </div>
         <p class="hero-copy">From student competitions to national recognition, REMaura has been shaped by the people and organizations willing to challenge, support, and validate what we're building.</p>
       </div>
