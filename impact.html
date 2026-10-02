@@ -131,6 +131,59 @@
   .instagram-media { width:100% !important; max-width:540px !important; min-width:280px !important; margin:0 auto !important; background:#FFF !important; border:0 !important; border-radius:16px !important; box-shadow:0 12px 30px rgba(13,27,42,.08); }
   .county-divider { grid-column:1 / -1; display:flex; align-items:center; gap:14px; margin:8px 0 -2px; color:var(--blue-accent); font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
   .county-divider::before, .county-divider::after { content:""; height:1px; background:var(--cream-line); flex:1; }
+
+  .hero-visual { padding-bottom: 0; }
+  .hero-carousel {
+    position: relative; height: 220px; overflow: hidden;
+    border: 1px solid var(--cream-line); background: var(--cream-warm);
+  }
+  .hero-slides { display:flex; width:300%; height:100%; transition:transform .65s cubic-bezier(.22,.61,.36,1); }
+  .hero-slide {
+    width:33.333%; flex:none; position:relative; display:flex; align-items:flex-end;
+    padding:20px; background:
+      linear-gradient(135deg, rgba(62,118,168,.18), rgba(238,223,199,.35));
+  }
+  .hero-slide:nth-child(2) { background:linear-gradient(135deg, rgba(13,27,42,.08), rgba(62,118,168,.12)); }
+  .hero-slide:nth-child(3) { background:linear-gradient(135deg, rgba(217,123,63,.10), rgba(238,223,199,.55)); }
+  .hero-slide::before {
+    content:"IMAGE PLACEHOLDER"; position:absolute; top:20px; left:20px;
+    font-size:.63rem; letter-spacing:.14em; font-weight:700; color:rgba(13,27,42,.45);
+  }
+  .hero-slide span { font-size:.78rem; color:var(--navy); font-weight:600; }
+  .hero-dots { display:flex; gap:7px; margin-top:10px; }
+  .hero-dot { width:6px; height:6px; border:0; border-radius:50%; background:var(--cream-line); padding:0; cursor:pointer; }
+  .hero-dot.active { background:var(--blue-accent); }
+  .project-sleep {
+    grid-column:1 / -1; display:grid; grid-template-columns:1.05fr .95fr; gap:0;
+    border:1px solid var(--cream-line); background:rgba(238,223,199,.4); overflow:hidden;
+  }
+  .project-sleep-copy { padding:34px; }
+  .project-sleep-visual {
+    min-height:270px; position:relative; overflow:hidden; background:var(--navy-deep);
+  }
+  .project-sleep-visual::before {
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(242,232,216,.42) 1px, transparent 1px);
+    background-size:22px 22px; opacity:.45;
+  }
+  .project-sleep-visual::after {
+    content:""; position:absolute; width:240px; height:240px; border:1px solid rgba(127,179,224,.45);
+    border-radius:50%; left:50%; top:50%; transform:translate(-50%,-50%);
+    box-shadow:0 0 0 42px rgba(127,179,224,.06), 0 0 0 84px rgba(127,179,224,.035);
+  }
+  .project-sleep-visual-label {
+    position:absolute; left:28px; bottom:25px; z-index:1; color:rgba(242,232,216,.75);
+    font-size:.68rem; text-transform:uppercase; letter-spacing:.14em;
+  }
+  .community-feature { display:grid; grid-template-columns:.95fr 1.05fr; gap:34px; align-items:center; }
+  .instagram-embed-wrap { margin-top:0; display:block; min-height:0; }
+  .instagram-caption {
+    border-left:1px solid var(--cream-line); padding:10px 0 10px 34px;
+    color:var(--ink-soft); font-size:.84rem; line-height:1.7;
+  }
+  .instagram-caption strong { color:var(--navy); display:block; margin-bottom:12px; }
+  .instagram-caption p { white-space:pre-line; }
+
   .site-footer { background:var(--navy-deep); padding:52px 48px 28px; margin-top:90px; position:relative; z-index:1; }
   .footer-inner { max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px; padding-bottom:32px; border-bottom:1px solid rgba(242,232,216,.12); }
   .footer-logo { display:flex; align-items:center; gap:10px; font-weight:600; font-size:1.05rem; color:var(--cream); text-decoration:none; }
@@ -161,7 +214,60 @@
     .money-bar { height:14px; }
     .voice-card { padding:30px 26px; }
     .voice-image { min-height:250px; }
-    .site-footer { padding-left:24px; padding-right:24px; }
+  
+  .hero-visual { padding-bottom: 0; }
+  .hero-carousel {
+    position: relative; height: 220px; overflow: hidden;
+    border: 1px solid var(--cream-line); background: var(--cream-warm);
+  }
+  .hero-slides { display:flex; width:300%; height:100%; transition:transform .65s cubic-bezier(.22,.61,.36,1); }
+  .hero-slide {
+    width:33.333%; flex:none; position:relative; display:flex; align-items:flex-end;
+    padding:20px; background:
+      linear-gradient(135deg, rgba(62,118,168,.18), rgba(238,223,199,.35));
+  }
+  .hero-slide:nth-child(2) { background:linear-gradient(135deg, rgba(13,27,42,.08), rgba(62,118,168,.12)); }
+  .hero-slide:nth-child(3) { background:linear-gradient(135deg, rgba(217,123,63,.10), rgba(238,223,199,.55)); }
+  .hero-slide::before {
+    content:"IMAGE PLACEHOLDER"; position:absolute; top:20px; left:20px;
+    font-size:.63rem; letter-spacing:.14em; font-weight:700; color:rgba(13,27,42,.45);
+  }
+  .hero-slide span { font-size:.78rem; color:var(--navy); font-weight:600; }
+  .hero-dots { display:flex; gap:7px; margin-top:10px; }
+  .hero-dot { width:6px; height:6px; border:0; border-radius:50%; background:var(--cream-line); padding:0; cursor:pointer; }
+  .hero-dot.active { background:var(--blue-accent); }
+  .project-sleep {
+    grid-column:1 / -1; display:grid; grid-template-columns:1.05fr .95fr; gap:0;
+    border:1px solid var(--cream-line); background:rgba(238,223,199,.4); overflow:hidden;
+  }
+  .project-sleep-copy { padding:34px; }
+  .project-sleep-visual {
+    min-height:270px; position:relative; overflow:hidden; background:var(--navy-deep);
+  }
+  .project-sleep-visual::before {
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(242,232,216,.42) 1px, transparent 1px);
+    background-size:22px 22px; opacity:.45;
+  }
+  .project-sleep-visual::after {
+    content:""; position:absolute; width:240px; height:240px; border:1px solid rgba(127,179,224,.45);
+    border-radius:50%; left:50%; top:50%; transform:translate(-50%,-50%);
+    box-shadow:0 0 0 42px rgba(127,179,224,.06), 0 0 0 84px rgba(127,179,224,.035);
+  }
+  .project-sleep-visual-label {
+    position:absolute; left:28px; bottom:25px; z-index:1; color:rgba(242,232,216,.75);
+    font-size:.68rem; text-transform:uppercase; letter-spacing:.14em;
+  }
+  .community-feature { display:grid; grid-template-columns:.95fr 1.05fr; gap:34px; align-items:center; }
+  .instagram-embed-wrap { margin-top:0; display:block; min-height:0; }
+  .instagram-caption {
+    border-left:1px solid var(--cream-line); padding:10px 0 10px 34px;
+    color:var(--ink-soft); font-size:.84rem; line-height:1.7;
+  }
+  .instagram-caption strong { color:var(--navy); display:block; margin-bottom:12px; }
+  .instagram-caption p { white-space:pre-line; }
+
+  .site-footer { padding-left:24px; padding-right:24px; }
     .footer-inner { flex-direction:column; align-items:flex-start; }
     .footer-right { flex-direction:column; align-items:flex-start; gap:14px; }
   }
@@ -197,7 +303,21 @@
         <div class="eyebrow">Impact & Recognition</div>
         <h1>What happens when an idea gets tested in the real world.</h1>
       </div>
-      <p class="hero-copy">From student competitions to national recognition, REMaura has been shaped by the people and organizations willing to challenge, support, and validate what we're building.</p>
+      <div class="hero-visual">
+        <div class="hero-carousel" aria-label="REMaura recognition and project images">
+          <div class="hero-slides">
+            <div class="hero-slide"><span>Competition / recognition photo</span></div>
+            <div class="hero-slide"><span>Prototype or testing moment</span></div>
+            <div class="hero-slide"><span>Team / community moment</span></div>
+          </div>
+        </div>
+        <div class="hero-dots" aria-label="Image carousel controls">
+          <button class="hero-dot active" aria-label="Show image 1"></button>
+          <button class="hero-dot" aria-label="Show image 2"></button>
+          <button class="hero-dot" aria-label="Show image 3"></button>
+        </div>
+        <p class="hero-copy">From student competitions to national recognition, REMaura has been shaped by the people and organizations willing to challenge, support, and validate what we're building.</p>
+      </div>
     </div>
 
 
@@ -320,20 +440,38 @@
       <p class="section-note">Some of our strongest validation has come from people and organizations already working in sleep.</p>
     </div>
     <div class="partner-grid">
-      <article class="partner-card">
-        <div class="partner-label">National nonprofit partnership</div>
-        <h3>Project Sleep</h3>
-        <p>Partnered with Project Sleep, a national nonprofit with a <strong>17K+ network</strong>, to connect REMaura with a broader sleep-disorder community.</p>
+      <article class="project-sleep">
+        <div class="project-sleep-copy">
+          <div class="partner-label">National nonprofit partnership</div>
+          <h3>Project Sleep</h3>
+          <p>Partnered with Project Sleep, a national nonprofit with a <strong>17K+ network</strong>, to connect REMaura with a broader sleep-disorder community and put our validation in front of people already working in sleep health.</p>
+        </div>
+        <div class="project-sleep-visual">
+          <div class="project-sleep-visual-label">A wider sleep community</div>
+        </div>
       </article>
+
       <div class="county-divider"><span>Community recognition</span></div>
+
       <article class="partner-card county-card">
-        <div class="partner-label">Community recognition</div>
-        <h3>Henrico County Public Schools</h3>
-        <p>Recognized by Henrico County Public Schools for the work and innovation behind REMaura.</p>
-        <div class="instagram-embed-wrap">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWHV_1XlY63/" data-instgrm-version="14">
-            <a href="https://www.instagram.com/p/DWHV_1XlY63/" target="_blank" rel="noopener noreferrer">View the Henrico County Public Schools recognition on Instagram</a>
-          </blockquote>
+        <div class="community-feature">
+          <div class="instagram-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWHV_1XlY63/" data-instgrm-version="14">
+              <a href="https://www.instagram.com/p/DWHV_1XlY63/" target="_blank" rel="noopener noreferrer">View the Henrico County Public Schools recognition on Instagram</a>
+            </blockquote>
+          </div>
+          <div class="instagram-caption">
+            <strong>Henrico County Public Schools</strong>
+            <p>Don't sleep 💤 on these two scholars — their innovative research into sleep science earned them national recognition in the Samsung Solve for Tomorrow competition and a meeting with the CEO of the National Sleep Foundation! 🙌
+
+J.R. Tucker High School sophomore Avni Loya and Deep Run High School sophomore Harshika Thouti were named 2025-2026 Promising STEM Innovation Recipients for developing "REMaura," a wearable accessory and app that is able to detect sleep patterns for people dealing with sleep disorders such as narcolepsy and sleep apnea. Specifically, it can help people with these disorders be aware of "microsleeps" — brief lapses of sleep that can affect people daily or lead to dangerous situations.
+
+The students worked closely with sleep health advocates and industry professionals and utilized surveys and data to refine their project with the goal of improving safety and quality of life for people living with sleep disorders. After testing and development, a survey distributed through Project Sleep reported that 94% of respondents said they would purchase REMaura.
+
+The two friends each attended Moody Middle School, and now Avni is in the I.B. program at Tucker, while Harshika is in the Center for Information Technology at Deep Run. A group of students from Moody Middle School were also recognized as part of this year's STEM-focused competition.
+
+Congratulations to these brilliant students and their hard work!</p>
+          </div>
         </div>
       </article>
     </div>
