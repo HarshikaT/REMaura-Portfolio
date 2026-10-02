@@ -6,7 +6,7 @@
 <title>REMaura — Our Product</title>
 <style>
 :root{--cream:#F2E8D8;--cream-warm:#EEDFC7;--cream-line:#E4D6BC;--navy:#0D1B2A;--navy-deep:#08111C;--navy-soft:#1B3A5C;--blue:#3E76A8;--aqua:#3D8B9A;--teal:#69B7BC;--water:#185B78;--ink:#2A2118;--ink-soft:rgba(42,33,24,.62);--white:#F6F5EF}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--cream);color:var(--ink);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}a{color:inherit}nav{height:88px;display:flex;align-items:center;justify-content:space-between;padding:28px 48px;background:var(--cream);position:relative;z-index:30}nav:after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:min(60%,640px);height:1px;background:linear-gradient(90deg,transparent,rgba(62,118,168,.45),transparent)}.logo{display:flex;align-items:center;gap:12px;font-weight:600;font-size:1.15rem;letter-spacing:.02em;color:var(--navy);text-decoration:none}.logo svg{width:34px}.nav-links{display:flex;gap:26px;list-style:none}.nav-links a{font-size:.85rem;font-weight:500;color:var(--ink);opacity:.6;text-decoration:none;transition:opacity .2s,transform .2s}.nav-links a:hover,.nav-links a.active{opacity:1}.nav-links a:hover{transform:translateY(-1px)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--cream);color:var(--ink);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}a{color:inherit}nav{height:88px;display:flex;align-items:center;justify-content:space-between;padding:28px 48px;background:var(--cream);position:sticky;top:0;z-index:30}nav:after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:min(60%,640px);height:1px;background:linear-gradient(90deg,transparent,rgba(62,118,168,.45),transparent)}.logo{display:flex;align-items:center;gap:12px;font-weight:600;font-size:1.15rem;letter-spacing:.02em;color:var(--navy);text-decoration:none}.logo svg{width:34px}.nav-links{display:flex;gap:26px;list-style:none}.nav-links a{font-size:.85rem;font-weight:500;color:var(--ink);opacity:.6;text-decoration:none;transition:opacity .2s,transform .2s}.nav-links a:hover,.nav-links a.active{opacity:1}.nav-links a:hover{transform:translateY(-1px)}
 .section{padding:120px 8vw;position:relative}.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:18px}.section-title{font-size:clamp(2.7rem,5.5vw,6rem);line-height:.93;letter-spacing:-.065em;color:var(--navy);font-weight:650}.section-intro{font-size:1.08rem;line-height:1.7;color:var(--ink-soft);max-width:680px}.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}.reveal.visible{opacity:1;transform:none}
 /* DAY / NIGHT STORY */
 .product-top{height:185vh;min-height:1250px;padding:18px 48px 38px;position:relative}
@@ -65,6 +65,62 @@
 footer{padding:38px 8vw;background:var(--cream);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--cream-line)}.footer-brand{font-size:1rem;font-weight:650;color:var(--navy)}.footer-note{font-size:.7rem;color:var(--ink-soft);margin-top:4px}.footer-links{display:flex;gap:25px}.footer-links a{font-size:.72rem;color:var(--ink-soft);text-decoration:none}.footer-links a:hover{color:var(--navy)}
 @media(max-width:950px){.nav-links{gap:14px}.overview-grid{grid-template-columns:1fr}.overview-art{height:330px}.app-stage{height:520px}.app-mock{width:230px;height:455px}.mock-one{left:0}.mock-two{left:20%}.mock-three{left:40%}.mock-four{left:60%}.mock-five{left:80%}.why-header .section-title{white-space:normal}.why-grid{grid-template-columns:1fr}.why-item{border-right:0;border-bottom:1px solid var(--cream-line)}.why-item:last-child{border-bottom:0}.faq-head{display:block}.faq-head p{margin-top:20px}}
 @media(max-width:700px){nav{height:70px;padding:20px 22px}.nav-links{display:none}.product-top{height:calc(100vh - 70px);min-height:600px;padding:10px 14px 18px}.top-placeholder{border-radius:25px}.section{padding:88px 7vw}.section-title{font-size:clamp(2.7rem,12vw,4.5rem)}.overview-art{height:290px}.overview-ring{width:240px;height:240px;right:4%;top:20px}.overview-core{right:24%;top:80px;width:115px;height:115px}.app-head{display:block}.app-stage{height:820px;display:flex;align-items:center;justify-content:center}.app-mock{position:absolute;width:190px;height:390px}.mock-one{left:0;top:85px}.mock-two{left:16%;top:30px}.mock-three{left:32%;top:0}.mock-four{left:48%;top:30px}.mock-five{left:64%;top:85px}.app-stage:has(.app-mock:hover) .app-mock:not(:hover){transform:translate3d(0,12px,0) scale(.9)}.app-mock:hover,.app-mock.active{transform:translate3d(0,-25px,0) scale(1.04)!important}.screen-number{font-size:3.6rem}.why-item h3{margin-top:45px}.faq-question{padding:23px 0}footer{padding:32px 7vw;display:block}.footer-links{margin-top:18px;flex-wrap:wrap}}
+
+/* Fast-scroll rendering fix */
+.day-night-section,
+.day-night-sticky,
+.day-night-media,
+.day-night-media video,
+.day-night-overlay {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.day-night-section {
+  isolation: isolate;
+  contain: paint;
+}
+
+.day-night-media {
+  overflow: clip;
+  border-radius: inherit;
+
+  background: var(--navy-deep);
+}
+
+.day-night-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.day-night-media::before,
+.day-night-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.day-night-media::before {
+  z-index: 3;
+  background: linear-gradient(
+    180deg,
+    rgba(8,17,28,.08) 0%,
+    rgba(8,17,28,0) 42%,
+    rgba(8,17,28,.16) 100%
+  );
+}
+
+.day-night-media::after {
+  z-index: 4;
+  background: transparent;
+}
+
 </style>
 </head>
 <body>
@@ -151,22 +207,28 @@ const mocks=[...document.querySelectorAll('.app-mock')],desc=document.getElement
 const appStage=document.getElementById('appStage');appStage.addEventListener('mouseleave',()=>{desc.innerHTML='<h3>Alertness at a glance</h3><p>Hover over a screen to bring it forward.</p>'});
 
 /* Day / night story: scroll controls the transition, while the pill gives visitors direct control. */
-const story=document.getElementById('dayNightStory'),scene=document.getElementById('dayNightScene'),progress=document.getElementById('storyProgress'),toggles=[...document.querySelectorAll('.story-toggle')];
-let manualMode=false,manualTimer;
+const storySection=document.getElementById('dayNightStory'),story=document.getElementById('dayNightScene'),scene=story,progress=document.getElementById('storyProgress'),toggles=[...document.querySelectorAll('.story-toggle')];
+let manualMode=false;
 function setStoryMode(mode,fromScroll=false){
   scene.classList.toggle('night',mode==='night');
   toggles.forEach(t=>{const active=t.dataset.mode===mode;t.classList.toggle('active',active);t.setAttribute('aria-pressed',active)});
   if(!fromScroll) manualMode=true;
 }
 function updateStoryFromScroll(){
-  if(manualMode) return;
-  const rect=story.getBoundingClientRect(), travel=Math.max(1,story.offsetHeight-window.innerHeight);
-  const raw=Math.min(1,Math.max(0,(-rect.top)/travel));
+  const nav=document.querySelector('nav');
+  const storyHeight=story.offsetHeight;
+  const stickyTop=parseFloat(getComputedStyle(story).top)||0;
+  const endScroll=Math.max(1,storySection.offsetTop+storySection.offsetHeight-storyHeight-stickyTop);
+  const raw=Math.min(1,Math.max(0,window.scrollY/endScroll));
   progress.style.transform='scaleX('+raw.toFixed(3)+')';
-  if(raw>.52) setStoryMode('night',true); else setStoryMode('day',true);
+  if(manualMode) return;
+  setStoryMode(raw>.52?'night':'day',true);
 }
-toggles.forEach(t=>t.addEventListener('click',()=>{setStoryMode(t.dataset.mode);clearTimeout(manualTimer);manualTimer=setTimeout(()=>{manualMode=false;updateStoryFromScroll()},900)}));
-window.addEventListener('scroll',updateStoryFromScroll,{passive:true});window.addEventListener('resize',updateStoryFromScroll);updateStoryFromScroll();
+toggles.forEach(t=>t.addEventListener('click',()=>setStoryMode(t.dataset.mode)));
+window.addEventListener('scroll',updateStoryFromScroll,{passive:true});
+window.addEventListener('resize',updateStoryFromScroll);
+window.addEventListener('load',updateStoryFromScroll);
+updateStoryFromScroll();
 
 const dayVideo=document.querySelector('.day-video'),nightVideo=document.querySelector('.night-video');[dayVideo,nightVideo].forEach(v=>v&&v.addEventListener('error',()=>v.style.display='none'));
 
