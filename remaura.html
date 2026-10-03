@@ -30,6 +30,7 @@ nav::after{content:"";position:absolute;bottom:-1px;left:50%;transform:translate
 .wave{position:absolute;left:-5%;width:110%;height:26%;border-radius:50% 50% 0 0/55% 55% 0 0;transform:rotate(-1.5deg);border-top:2px solid rgba(118,201,201,.28)}.wave.one{top:10%;opacity:.55}.wave.two{top:27%;opacity:.34;transform:rotate(1deg)}.wave.three{top:47%;opacity:.22;transform:rotate(-.5deg)}.water-shimmer{position:absolute;inset:0;background:repeating-linear-gradient(177deg,transparent 0 20px,rgba(123,193,194,.055) 21px,transparent 23px 45px);opacity:.6}.water-vignette{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,27,42,.30),transparent 22%,transparent 78%,rgba(13,27,42,.30)),linear-gradient(180deg,transparent 58%,rgba(13,27,42,.08) 72%,rgba(13,27,42,.32) 100%)}
 
 .hero-atmo{position:absolute;right:3%;top:13%;width:43%;height:43%;pointer-events:none;z-index:5;overflow:visible}.atmo-glow{position:absolute;right:8%;top:12%;width:58%;height:58%;border-radius:50%;background:radial-gradient(circle,rgba(126,205,205,.13),rgba(126,205,205,0) 68%);filter:blur(3px);animation:atmoBreath 6s ease-in-out infinite}.atmo-wave{position:absolute;right:0;width:92%;height:32%;border-top:1.5px solid rgba(197,228,227,.20);border-radius:50%;transform-origin:right center}.atmo-wave-a{top:48%;transform:rotate(-7deg);animation:waveDrift 10s ease-in-out infinite}.atmo-wave-b{top:57%;width:76%;opacity:.45;transform:rotate(5deg);animation:waveDrift 13s ease-in-out infinite reverse}.atmo-speck{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(197,228,227,.55);box-shadow:0 0 14px rgba(197,228,227,.25);animation:floatSpeck 5s ease-in-out infinite}.atmo-speck-a{right:25%;top:28%;animation-delay:-1s}.atmo-speck-b{right:13%;top:42%;animation-delay:-3s}.atmo-speck-c{right:39%;top:38%;width:3px;height:3px;animation-delay:-2s}@keyframes atmoBreath{0%,100%{transform:scale(.94);opacity:.65}50%{transform:scale(1.05);opacity:1}}@keyframes waveDrift{0%,100%{transform:translateX(0) rotate(-7deg)}50%{transform:translateX(-14px) rotate(-4deg)}}@keyframes floatSpeck{0%,100%{transform:translateY(4px);opacity:.35}50%{transform:translateY(-10px);opacity:.8}}
+.starfield{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
 .hero-copy{position:absolute;z-index:5;left:8%;top:9%;width:54%;color:white;text-align:left}.hero-line{font-size:clamp(1.45rem,2.5vw,2.65rem);line-height:1.12;letter-spacing:-.035em;font-weight:500;color:rgba(240,248,248,.93);max-width:650px;text-shadow:0 2px 18px rgba(8,17,28,.14)}
 .brand-lockup{position:absolute;z-index:6;left:8%;top:53%;transform:translateY(-50%);width:72%;text-align:left;color:#C5E4E3;text-shadow:0 3px 25px rgba(8,17,28,.24)}.brand-name{font-size:clamp(4.8rem,10vw,9.5rem);font-weight:600;letter-spacing:-.075em;line-height:.82}.tagline{margin-top:18px;font-size:clamp(.9rem,1.35vw,1.2rem);letter-spacing:.08em;text-transform:uppercase;color:rgba(218,240,239,.84);font-weight:500}.scroll-cue{position:absolute;z-index:7;right:32px;bottom:28px;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.7);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}.scroll-cue::after{content:"";width:1px;height:46px;background:rgba(255,255,255,.45);animation:drift 1.8s ease-in-out infinite}@keyframes drift{0%,100%{transform:scaleY(.55);transform-origin:top;opacity:.35}50%{transform:scaleY(1);transform-origin:top;opacity:.9}}
 
@@ -65,7 +66,7 @@ footer{background:var(--navy);color:var(--cream);padding:38px 8vw;display:flex;j
 </nav>
 
 <main>
-<section class="hero-shell"><div class="hero-card" aria-label="REMaura introduction"><div class="sky"></div><div class="horizon"></div><div class="ocean"><div class="wave one"></div><div class="wave two"></div><div class="wave three"></div><div class="water-shimmer"></div><div class="water-vignette"></div></div><div class="hero-copy"><div class="hero-line">Stay awake when it matters most.</div></div><div class="hero-atmo" aria-hidden="true"><div class="atmo-glow"></div><div class="atmo-wave atmo-wave-a"></div><div class="atmo-wave atmo-wave-b"></div><div class="atmo-speck atmo-speck-a"></div><div class="atmo-speck atmo-speck-b"></div><div class="atmo-speck atmo-speck-c"></div></div><div class="brand-lockup"><div class="brand-name">REMaura</div><div class="tagline">Awareness You Can Wear</div></div><div class="scroll-cue">Explore</div></div></section>
+<section class="hero-shell"><div class="hero-card" aria-label="REMaura introduction"><div class="sky"></div><canvas id="starfield" class="starfield" aria-hidden="true"></canvas><div class="horizon"></div><div class="ocean"><div class="wave one"></div><div class="wave two"></div><div class="wave three"></div><div class="water-shimmer"></div><div class="water-vignette"></div></div><div class="hero-copy"><div class="hero-line">Stay awake when it matters most.</div></div><div class="hero-atmo" aria-hidden="true"><div class="atmo-glow"></div><div class="atmo-wave atmo-wave-a"></div><div class="atmo-wave atmo-wave-b"></div><div class="atmo-speck atmo-speck-a"></div><div class="atmo-speck atmo-speck-b"></div><div class="atmo-speck atmo-speck-c"></div></div><div class="brand-lockup"><div class="brand-name">REMaura</div><div class="tagline">Awareness You Can Wear</div></div><div class="scroll-cue">Explore</div></div></section>
 
 <section class="section problem" id="problem"><div class="problem-grid"><div class="problem-copy reveal"><div class="eyebrow">The problem</div><h2 class="section-title">When sleep can interrupt life without warning.</h2><p class="section-intro">For people living with narcolepsy and sleep apnea, excessive daytime sleepiness can turn ordinary moments into risky ones. Microsleeps can arrive with little warning, making driving, working, studying, or simply staying present harder than it should be.</p><div class="problem-stat"><div class="stat-number" data-count="67.9">0</div><div class="stat-label">of survey respondents reported falling asleep in dangerous situations at least once a week.</div></div></div><div class="problem-visual reveal"><div class="sleep-window"><div class="visual-label">alertness · over time</div><div class="signal"><svg viewBox="0 0 900 180" preserveAspectRatio="none" aria-hidden="true"><path class="signal-path" d="M0 92 C70 88 100 94 150 87 S230 84 270 92 S330 112 370 104 S430 62 470 78 S520 104 565 99 S620 72 660 82 S715 114 760 100 S820 79 900 84"/></svg></div><div class="danger-zone"></div><div class="danger-dot"></div><div class="signal-caption"><span>steady alertness</span><strong>microsleep risk</strong></div></div></div></div></section>
 
@@ -81,6 +82,94 @@ const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(e
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 const stat=document.querySelector('.stat-number');let counted=false;const statObs=new IntersectionObserver(entries=>{if(entries[0].isIntersecting&&!counted){counted=true;const target=67.9;const start=performance.now();const duration=1300;function tick(now){const p=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-p,3);stat.textContent=(target*eased).toFixed(1)+'%';if(p<1)requestAnimationFrame(tick)}requestAnimationFrame(tick);statObs.disconnect()}},{threshold:.5});statObs.observe(stat);
 const hero=document.querySelector('.hero-card');hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;hero.style.setProperty('--mx',x);hero.style.setProperty('--my',y)});hero.addEventListener('pointerleave',()=>{hero.style.setProperty('--mx',0);hero.style.setProperty('--my',0)});
+
+/* HERO: twinkling stars, flowing ribbons, shooting stars */
+(()=>{
+const hero=document.querySelector('.hero-card'),cv=document.getElementById('starfield'),cx=cv.getContext('2d');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const dpr=Math.min(devicePixelRatio||1,2);
+let W=0,H=0,stars=[],shoots=[],nextShoot=1.5,mx=0,my=0,tmx=0,tmy=0,run=true;
+
+function build(){
+  const r=hero.getBoundingClientRect();W=r.width;H=r.height;
+  cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);
+  const n=Math.round(W*H/2200);stars=[];
+  for(let i=0;i<n;i++){
+    const right=Math.random()<.6;
+    stars.push({
+      x:right?W*(1-Math.pow(Math.random(),1.7)):Math.random()*W,
+      y:H*.62*Math.pow(Math.random(),.85),
+      r:Math.random()<.08?1.6+Math.random()*1.2:.4+Math.random()*1.1,
+      sp:.6+Math.random()*2.4,ph:Math.random()*6.28,
+      depth:.2+Math.random()*.8,
+      c:Math.random()<.25?'255,226,190':Math.random()<.5?'170,225,235':'225,242,245'
+    });
+  }
+}
+
+function ribbon(t,k,col){
+  const x0=W*.38,steps=40;
+  const baseY=H*(.24+k*.13)+my*14*(k+1);
+  const g=cx.createLinearGradient(x0,0,W,0);
+  g.addColorStop(0,'rgba('+col+',0)');g.addColorStop(.45,'rgba('+col+',.5)');g.addColorStop(1,'rgba('+col+',0)');
+  cx.beginPath();
+  for(let i=0;i<=steps;i++){
+    const u=i/steps,x=x0+(W-x0)*u;
+    const y=baseY+Math.sin(u*5+t*.55+k*1.7)*H*.045+Math.sin(u*9-t*.8+k)*H*.02+u*H*.1+mx*10*(k+1)*u;
+    i?cx.lineTo(x,y):cx.moveTo(x,y);
+  }
+  cx.strokeStyle=g;cx.lineWidth=2.2-k*.4;cx.globalAlpha=.55-k*.1;
+  cx.shadowColor='rgba('+col+',.9)';cx.shadowBlur=18;cx.stroke();
+  cx.shadowBlur=0;cx.globalAlpha=1;
+}
+
+function shoot(){
+  const a=2.55+Math.random()*.35;
+  shoots.push({x:W*(.55+Math.random()*.45),y:H*(.02+Math.random()*.2),vx:Math.cos(a)*(520+Math.random()*260),vy:Math.sin(a)*(520+Math.random()*260),life:0,max:.9+Math.random()*.5});
+}
+
+let last=performance.now(),T=0;
+function frame(now){
+  if(!run){return}
+  const dt=Math.min((now-last)/1000,.05);last=now;T+=dt;
+  mx+=(tmx-mx)*.05;my+=(tmy-my)*.05;
+  cx.clearRect(0,0,W,H);
+  cx.globalCompositeOperation='lighter';
+
+  ribbon(T,0,'126,214,214');ribbon(T,1,'110,170,235');ribbon(T,2,'150,230,200');
+
+  for(const s of stars){
+    const tw=.5+.5*Math.sin(T*s.sp+s.ph);
+    const fade=Math.max(0,Math.min(1,(H*.6-s.y)/(H*.18)));
+    const a=(.15+.85*tw*tw)*fade;
+    const px=s.x+mx*18*s.depth,py=s.y+my*12*s.depth;
+    cx.fillStyle='rgba('+s.c+','+a.toFixed(3)+')';
+    cx.beginPath();cx.arc(px,py,s.r*(.75+.35*tw),0,6.28);cx.fill();
+    if(s.r>1.5){
+      cx.strokeStyle='rgba('+s.c+','+(a*.7).toFixed(3)+')';cx.lineWidth=.7;
+      const L=s.r*4*tw;cx.beginPath();cx.moveTo(px-L,py);cx.lineTo(px+L,py);cx.moveTo(px,py-L);cx.lineTo(px,py+L);cx.stroke();
+    }
+  }
+
+  nextShoot-=dt;if(nextShoot<=0){shoot();nextShoot=3+Math.random()*4}
+  for(let i=shoots.length-1;i>=0;i--){
+    const s=shoots[i];s.life+=dt;s.x+=s.vx*dt;s.y+=s.vy*dt;
+    const p=s.life/s.max;if(p>=1){shoots.splice(i,1);continue}
+    const al=Math.sin(p*Math.PI),tx=s.x-s.vx*.12,ty=s.y-s.vy*.12;
+    const g=cx.createLinearGradient(s.x,s.y,tx,ty);
+    g.addColorStop(0,'rgba(235,250,250,'+al+')');g.addColorStop(1,'rgba(235,250,250,0)');
+    cx.strokeStyle=g;cx.lineWidth=1.6;cx.beginPath();cx.moveTo(s.x,s.y);cx.lineTo(tx,ty);cx.stroke();
+  }
+  cx.globalCompositeOperation='source-over';
+  if(!reduce)requestAnimationFrame(frame);
+}
+
+hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();tmx=(e.clientX-r.left)/r.width-.5;tmy=(e.clientY-r.top)/r.height-.5});
+hero.addEventListener('pointerleave',()=>{tmx=0;tmy=0});
+new ResizeObserver(build).observe(hero);
+new IntersectionObserver(es=>{const v=es[0].isIntersecting;if(v&&!run&&!reduce){run=true;last=performance.now();requestAnimationFrame(frame)}run=v||reduce}).observe(hero);
+build();requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
