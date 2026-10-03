@@ -409,6 +409,7 @@
     width: 56%;
     height: 240px;
     border-radius: 22px;
+    overflow: hidden;
     background: linear-gradient(155deg, var(--navy-soft) 0%, var(--navy-deep) 100%);
     display: flex;
     align-items: center;
@@ -422,6 +423,16 @@
     box-shadow: 0 16px 36px rgba(13,27,42,0.2);
     transition: transform 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
     cursor: default;
+  }
+
+  .photo-item img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
 
   .photo-item.one { left: 0; top: 30px; transform: rotate(-6deg); z-index: 1; }
@@ -884,8 +895,8 @@
 
     <div class="interview-header">
       <div class="photo-cluster">
-        <div class="photo-item one">Photo</div>
-        <div class="photo-item two">Photo</div>
+        <div class="photo-item one"><img src="assets/kayla_phu.png" alt="Kayla, interviewee living with narcolepsy"></div>
+        <div class="photo-item two"><img src="assets/ashley_blankenship.png" alt="Ashley Blankenship, startup owner and interviewee"></div>
       </div>
       <div class="interview-header-text">
         <p>We sat down with about ten people living with narcolepsy to understand what microsleeps actually feel like day to day — and what a safety device would need to get right to earn their trust.</p>
