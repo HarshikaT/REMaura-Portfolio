@@ -106,6 +106,22 @@ footer{padding:38px 8vw;background:var(--cream);display:flex;justify-content:spa
 @media(max-width:700px){nav{height:70px;padding:20px 22px}.nav-links{display:none}.product-top{height:calc(100vh - 70px);min-height:600px;padding:10px 14px 18px}.top-placeholder{border-radius:25px}.section{padding:88px 7vw}.section-title{font-size:clamp(2.7rem,12vw,4.5rem)}.overview-art{height:290px}.overview-ring{width:240px;height:240px;right:4%;top:20px}.overview-core{right:24%;top:80px;width:115px;height:115px}.app-head{display:block}.app-stage{height:820px;display:flex;align-items:center;justify-content:center}.app-mock{position:absolute;width:190px;height:390px}.mock-one{left:0;top:85px}.mock-two{left:16%;top:30px}.mock-three{left:32%;top:0}.mock-four{left:48%;top:30px}.mock-five{left:64%;top:85px}.app-stage:has(.app-mock:hover) .app-mock:not(:hover){transform:translate3d(0,12px,0) scale(.9)}.app-mock:hover,.app-mock.active{transform:translate3d(0,-25px,0) scale(1.04)!important}.screen-number{font-size:3.6rem}.why-item h3{margin-top:45px}.faq-question{padding:23px 0}footer{padding:32px 7vw;display:block}.footer-links{margin-top:18px;flex-wrap:wrap}}
 
 @media(max-width:700px){.water-transition{height:170px}.device{transform:scale(.72) rotateX(5deg) rotateY(-12deg) rotateZ(-1deg)}.tech-stage[data-active="eeg"] .device{transform:scale(.76) rotateX(4deg) rotateY(-20deg) rotateZ(-1deg)}.tech-stage[data-active="gsr"] .device{transform:scale(.76) rotateX(4deg) rotateY(17deg) rotateZ(1deg)}.tech-stage[data-active="ml"] .device{transform:scale(.78) rotateX(-4deg) rotateY(-3deg)}.tech-stage[data-active="trigger"] .device{transform:scale(.76) rotateX(7deg) rotateY(7deg) rotateZ(1deg)}}
+
+/* APP MOCKUPS: slightly smaller on desktop so phones + description fit on screen */
+@media(min-width:951px){
+.section.app{padding-top:76px;padding-bottom:64px}
+.app-head{margin-bottom:30px}
+.app-head .section-title{font-size:clamp(2.4rem,4vw,4rem)}
+.app-stage{height:470px}
+.app-mock{width:200px;height:416px;border-width:8px;border-radius:34px}
+.mock-one{left:calc(50% - 100px - 34%);top:52px}
+.mock-two{left:calc(50% - 100px - 17%);top:22px}
+.mock-three{left:calc(50% - 100px);top:0}
+.mock-four{left:calc(50% - 100px + 17%);top:22px}
+.mock-five{left:calc(50% - 100px + 34%);top:52px}
+.app-mock:hover,.app-mock.active{transform:translate3d(0,-26px,0) rotate(0deg) scale(1.07)!important}
+.app-description{min-height:84px;margin-top:6px}
+}
 </style>
 </head>
 <body>
