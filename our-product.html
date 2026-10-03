@@ -57,7 +57,7 @@
 .deeper{position:relative;min-height:920px;padding:270px 7vw 130px;background:radial-gradient(circle at 50% 42%,rgba(61,139,154,.12),transparent 34%),linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:var(--cream);overflow:hidden;isolation:isolate}
 .deeper:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 18%,rgba(105,183,188,.08),transparent 24%),radial-gradient(circle at 88% 72%,rgba(62,118,168,.09),transparent 28%);pointer-events:none}
 /* WATER TRANSITION (canvas ocean surface) */
-.water-transition{position:absolute;z-index:1;top:0;left:0;width:100%;height:220px;pointer-events:none;overflow:hidden;background:var(--cream)}
+.water-transition{position:absolute;z-index:1;top:0;left:0;width:100%;height:220px;pointer-events:none;overflow:hidden;background:var(--cream);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 58%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 58%,transparent 100%)}
 .water-transition canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .deeper-head{position:relative;z-index:2;max-width:1120px;margin:0 auto 70px;text-align:center}.deeper-head .eyebrow{color:var(--teal)}.deeper-head h2{font-size:clamp(4rem,9vw,8.8rem);line-height:.82;letter-spacing:-.085em;font-weight:600}.deeper-head h2 em{font-family:Georgia,serif;font-weight:400;font-style:italic;letter-spacing:-.065em}.deeper-head p{max-width:700px;margin:28px auto 0;color:rgba(242,232,216,.55);line-height:1.7;font-size:1rem}
 .tech-explorer{position:relative;z-index:2;max-width:1180px;min-height:570px;margin:0 auto;display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:30px;align-items:center}.tech-rail{display:flex;flex-direction:column;gap:18px}.tech-rail.right{align-items:flex-end}.tech-chip{width:min(280px,100%);padding:18px 20px;border:1px solid rgba(242,232,216,.13);border-radius:20px;background:rgba(242,232,216,.035);color:var(--cream);text-align:left;cursor:pointer;transition:transform .65s cubic-bezier(.16,1,.3,1),border-color .45s ease,background .45s ease,box-shadow .65s cubic-bezier(.16,1,.3,1)}.tech-chip:hover,.tech-chip.active{transform:translateY(-5px) scale(1.02);border-color:rgba(105,183,188,.58);background:rgba(105,183,188,.09);box-shadow:0 18px 45px rgba(0,0,0,.2)}.tech-chip .chip-index{display:block;font-size:.6rem;letter-spacing:.17em;text-transform:uppercase;color:rgba(242,232,216,.38);margin-bottom:8px}.tech-chip strong{display:block;font-size:1.05rem;font-weight:500;letter-spacing:-.02em}.tech-chip span{display:block;margin-top:6px;font-size:.76rem;line-height:1.5;color:rgba(242,232,216,.46)}
@@ -216,21 +216,21 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,dpr=Math.min
 let W=0,H=0,T=0,last=performance.now(),run=true,hh=0,spray=[];
 
 const L=[
- {base:.36,amp:.10,sp:.35,k:2.2,ph:0,c0:'rgba(105,183,188,.22)',c1:'rgba(27,58,92,.60)',foam:0},
- {base:.46,amp:.12,sp:-.50,k:3.1,ph:2,c0:'rgba(62,118,168,.50)',c1:'rgba(18,48,80,.90)',foam:.35},
- {base:.57,amp:.13,sp:.70,k:2.6,ph:4,c0:'#1B4466',c1:'#0D1B2A',foam:.65},
- {base:.70,amp:.11,sp:-.90,k:3.8,ph:1,c0:'#12304A',c1:'#0D1B2A',foam:.95}
+ {base:.40,amp:.055,sp:.18,k:1.6,ph:0,c0:'rgba(105,183,188,.22)',c1:'rgba(27,58,92,.60)',foam:0},
+ {base:.49,amp:.065,sp:-.26,k:2.0,ph:2,c0:'rgba(62,118,168,.50)',c1:'rgba(18,48,80,.90)',foam:.3},
+ {base:.58,amp:.07,sp:.34,k:1.8,ph:4,c0:'#1B4466',c1:'#0D1B2A',foam:.5},
+ {base:.68,amp:.06,sp:-.42,k:2.4,ph:1,c0:'#12304A',c1:'#0D1B2A',foam:.7}
 ];
 
 function size(){W=box.clientWidth;H=box.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);if(reduce)draw(0)}
 
 // choppy, peaked waves; swell grows toward the left/right screen edges
 function yAt(l,u,t){
-  const e=1+.5*Math.pow(Math.abs(2*u-1),3);
+  const e=1+.25*Math.pow(Math.abs(2*u-1),3);
   const a=u*l.k*6.2832+t*l.sp+l.ph;
-  const h=Math.sin(a)*.55+Math.sin(a*2.1+t*.6)*.25+Math.pow(Math.abs(Math.sin(a*.5+t*.3)),2.4)*.55;
+  const h=Math.sin(a)*.6+Math.sin(a*1.7+t*.3)*.2+Math.pow(Math.abs(Math.sin(a*.5+t*.15)),2.4)*.3;
   hh=h;
-  const surge=.8+.2*Math.sin(t*.45+l.ph*1.3); // slow lapping in and out
+  const surge=.85+.15*Math.sin(t*.25+l.ph*1.3); // slow lapping in and out
   return Math.max(4,l.base*H-l.amp*H*e*surge*h);
 }
 
@@ -248,18 +248,18 @@ function draw(dt){
     if(l.foam){
       cx.beginPath();
       for(let i=0;i<p.length;i+=3)i?cx.lineTo(p[i],p[i+1]):cx.moveTo(p[i],p[i+1]);
-      cx.strokeStyle='rgba(236,246,244,'+(.18+l.foam*.4)+')';cx.lineWidth=1+l.foam*1.4;
+      cx.strokeStyle='rgba(236,246,244,'+(.14+l.foam*.3)+')';cx.lineWidth=1+l.foam*1.1;
       cx.shadowColor='rgba(236,246,244,.7)';cx.shadowBlur=8*l.foam;cx.stroke();cx.shadowBlur=0;
       if(l.foam>.5)for(let i=0;i<p.length;i+=3){ // whitecaps on the tallest crests
-        if(p[i+2]>.95){cx.fillStyle='rgba(240,250,248,'+Math.min(.8,(p[i+2]-.9)*1.2)+')';
-          cx.beginPath();cx.arc(p[i],p[i+1]+1,1+(p[i+2]-.9)*2.2,0,6.28);cx.fill()}
+        if(p[i+2]>.8){cx.fillStyle='rgba(240,250,248,'+Math.min(.6,(p[i+2]-.75)*1.2)+')';
+          cx.beginPath();cx.arc(p[i],p[i+1]+1,.8+(p[i+2]-.75)*1.6,0,6.28);cx.fill()}
       }
     }
   }
   // spray where the water hits the screen edges
-  if(!reduce&&dt&&Math.random()<dt*10){
+  if(!reduce&&dt&&Math.random()<dt*3){
     const left=Math.random()<.5,u=left?Math.random()*.05:1-Math.random()*.05;
-    spray.push({x:u*W,y:yAt(L[3],u,T)-2,vx:(left?1:-1)*(10+Math.random()*40),vy:-(70+Math.random()*110),life:0,max:.8+Math.random()*.6,r:.8+Math.random()*1.6});
+    spray.push({x:u*W,y:yAt(L[3],u,T)-2,vx:(left?1:-1)*(10+Math.random()*40),vy:-(40+Math.random()*70),life:0,max:.8+Math.random()*.6,r:.8+Math.random()*1.6});
   }
   for(let i=spray.length-1;i>=0;i--){
     const s=spray[i];s.life+=dt;s.vy+=220*dt;s.x+=s.vx*dt;s.y+=s.vy*dt;
@@ -278,6 +278,7 @@ function frame(now){
 new ResizeObserver(size).observe(box);
 new IntersectionObserver(es=>{const v=es[0].isIntersecting;if(v&&!run&&!reduce){run=true;last=performance.now();requestAnimationFrame(frame)}run=v||reduce}).observe(box);
 size();requestAnimationFrame(frame);
+
 })();
 </script>
 </body></html>
