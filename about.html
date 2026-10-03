@@ -412,6 +412,15 @@
     font-weight: 600;
     letter-spacing: 0.02em;
     flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
 
   .team-row-text h3 {
@@ -639,7 +648,7 @@
     </div>
     <div class="team-list" id="teamGrid">
       <div class="team-row" data-name="Harshika Thouti">
-        <div class="avatar">HT</div>
+        <div class="avatar"><img src="assets/website_harshika_dp.png" alt="Harshika Thouti"></div>
         <div class="team-row-text">
           <h3>Harshika Thouti</h3>
           <div class="team-role">Co-Founder & Director of Business Strategy</div>
@@ -647,7 +656,7 @@
         </div>
       </div>
       <div class="team-row" data-name="Avni Loya">
-        <div class="avatar">AL</div>
+        <div class="avatar"><img src="assets/website_avni_dp.png" alt="Avni Loya"></div>
         <div class="team-row-text">
           <h3>Avni Loya</h3>
           <div class="team-role">Co-Founder & Director of Medical Technology</div>
